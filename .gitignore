@@ -1,0 +1,8 @@
+flask/
+*.pyc
+*.pyo
+app.db
+search.db
+flask
+*.mo
+tmp/
