@@ -1,5 +1,6 @@
 from app import db, app
 from hashlib import md5
+from config import WHOOSH_ENABLED
 import re
 
 import sys
@@ -8,6 +9,9 @@ if sys.version_info >= (3, 0):
 else:
     enable_search = True
     import flask.ext.whooshalchemy as whooshalchemy
+
+enable_search = WHOOSH_ENABLED
+	import flask.ext.whooshalchemy as whooshalchemy
 
 class Post(db.Model):
     __searchable__ = ['body']

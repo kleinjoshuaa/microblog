@@ -13,8 +13,18 @@ OPENID_PROVIDERS = [
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+if os.environ.get('DATABASE_URL') is None:
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+else:
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+
+
+
+# Whoosh does not work on Heroku
+WHOOSH_ENABLED = os.environ.get('HEROKU') is None
+
 
 # mail server settings
 MAIL_SERVER = 'smtp.googlemail.com'
@@ -41,3 +51,7 @@ LANGUAGES = {
     'en': 'English',
     'es': 'Español'
 }
+
+# microsoft translation service
+MS_TRANSLATOR_CLIENT_ID = 'my-flask-microblog'
+MS_TRANSLATOR_CLIENT_SECRET='1pijwvIL5x4rAVdGE8FVnOmJWYQwtavlZwauO8osEnE'
