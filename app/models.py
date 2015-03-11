@@ -11,7 +11,7 @@ else:
     import flask.ext.whooshalchemy as whooshalchemy
 
 enable_search = WHOOSH_ENABLED
-if enable_search
+if enable_search:
 	import flask.ext.whooshalchemy as whooshalchemy
 
 class Post(db.Model):
